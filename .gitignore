@@ -1,0 +1,16 @@
+# Ignore arquivos de configuração específicos para Terraform
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+
+# Ignore arquivos de log e temporários
+*.log
+*.out
+
+# Ignore diretórios específicos dentro do módulo EC2
+modules/ec2/.terraform/
+
+# Ignore diretórios de estado do Terraform e arquivos de backup
+**/.terraform/
+**/.terraform.lock.hcl
+*.backup
