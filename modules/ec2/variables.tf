@@ -35,3 +35,13 @@ variable "db_host" {
   description = "Endpoint do RDS MySQL"
   type        = string
 }
+
+variable "db_user" {
+  description = "Usuário do RDS MySQL"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Senha do RDS MySQL"
+  type        = string
+}

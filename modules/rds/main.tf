@@ -8,7 +8,7 @@ terraform {
   }
 }
 
-resource "aws_db_instance" "wordpress-db" {
+resource "aws_db_instance" "wordpress" {
   identifier             = "wordpress"
   allocated_storage      = 20
   storage_type           = "gp2"

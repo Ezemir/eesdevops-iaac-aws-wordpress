@@ -14,14 +14,13 @@ provider "aws" {
 
 resource "aws_security_group" "mysql_sg" {
   name        = "mysql-sg"
-  description = "MySQL"
+  description = "MySQL Security Group"
 
   ingress {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    security_groups = [aws_security_group.wordpress_sg.id]
   }
 
   tags = {
@@ -31,7 +30,7 @@ resource "aws_security_group" "mysql_sg" {
 
 resource "aws_security_group" "wordpress_sg" {
   name        = "wordpress-sg"
-  description = "WordPress"
+  description = "WordPress Security Group"
 
   ingress {
     from_port   = 22
@@ -61,7 +60,7 @@ resource "aws_security_group" "wordpress_sg" {
 
 resource "aws_security_group" "wordpress_lb" {
   name        = "wordpress-lb"
-  description = "WordPressLB"
+  description = "WordPress Load Balancer Security Group"
 
   ingress {
     from_port   = 0

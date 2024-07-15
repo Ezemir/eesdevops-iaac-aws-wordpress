@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DB_HOST="$1"
-DB_USER="eesdevops"
-DB_PASSWORD="eesdevops"
+DB_HOST=$DB_HOST
+DB_USER=$DB_USER
+DB_PASSWORD=$DB_PASSWORD
 
 sudo apt update -y
 sudo apt install mysql-client -y
