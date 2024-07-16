@@ -15,9 +15,9 @@ resource "aws_db_instance" "wordpress" {
   engine                 = "mysql"
   engine_version         = "8.0"
   instance_class         = "db.t3.micro"
-  username               = "eesdevops"
-  password               = "eesdevops"
-  db_name                = "wordpress"
+  username               = var.db_username
+  password               = var.db_password
+  db_name                = var.db_name
   skip_final_snapshot    = true
   parameter_group_name   = "default.mysql8.0"
   vpc_security_group_ids = [var.mysql_sg_id]

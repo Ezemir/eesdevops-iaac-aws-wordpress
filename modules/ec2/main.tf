@@ -1,17 +1,3 @@
-terraform {
-  required_version = ">= 1.9.1"
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.57.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = var.region
-}
-
 resource "aws_instance" "ubuntu_instance" {
   ami                         = var.ami_id
   instance_type               = var.instance_type
@@ -23,11 +9,10 @@ resource "aws_instance" "ubuntu_instance" {
   }
 
   user_data = templatefile("${path.module}/scripts/install.sh", {
-    db_host     = var.db_host
-    db_user     = var.db_user
-    db_password = var.db_password
+    DB_HOST     = var.db_host
+    DB_USERNAME = var.db_username
+    DB_PASSWORD = var.db_password
   })
 
   depends_on = [var.db_host]
-
 }

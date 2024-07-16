@@ -23,8 +23,8 @@ module "security_groups" {
 module "rds" {
   source               = "./modules/rds"
   db_name              = "wordpress"
-  db_username          = "eesdevops"
-  db_password          = "eesdevops"
+  db_username          = var.db_username
+  db_password          = var.db_password
   db_instance_class    = "db.t3.micro"
   db_allocated_storage = 20
   mysql_sg_id          = module.security_groups.mysql_sg_id
@@ -39,11 +39,6 @@ module "ec2" {
   mysql_sg_id     = module.security_groups.mysql_sg_id
   wordpress_sg_id = module.security_groups.wordpress_sg_id
   db_host         = module.rds.db_host
-  db_user         = module.rds.db_user
+  db_username     = module.rds.db_username
   db_password     = module.rds.db_password
 }
-
-
-
-
-

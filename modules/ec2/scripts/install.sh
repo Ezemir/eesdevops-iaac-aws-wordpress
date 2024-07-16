@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DB_HOST=$DB_HOST
-DB_USER=$DB_USER
-DB_PASSWORD=$DB_PASSWORD
+DB_HOST     = var.db_host
+DB_USERNAME = var.db_username
+DB_PASSWORD = var.db_password
 
 sudo apt update -y
 sudo apt install mysql-client -y
@@ -72,9 +72,9 @@ fi
 
 sudo mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
 sudo sed -i "s/database_name_here/wordpress/" /var/www/html/wordpress/wp-config.php
-sudo sed -i "s/username_here/$DB_USER/" /var/www/html/wordpress/wp-config.php
-sudo sed -i "s/password_here/$DB_PASSWORD/" /var/www/html/wordpress/wp-config.php
-sudo sed -i "s/localhost/$DB_HOST/" /var/www/html/wordpress/wp-config.php
+sudo sed -i "s/username_here/${DB_USERNAME}/" /var/www/html/wordpress/wp-config.php
+sudo sed -i "s/password_here/${DB_PASSWORD}/" /var/www/html/wordpress/wp-config.php
+sudo sed -i "s/localhost/${DB_HOST}/" /var/www/html/wordpress/wp-config.php
 
 sudo chmod 640 /var/www/html/wordpress/wp-config.php
 

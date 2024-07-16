@@ -36,12 +36,14 @@ variable "db_host" {
   type        = string
 }
 
-variable "db_user" {
+variable "db_username" {
   description = "Usuário do RDS MySQL"
   type        = string
+  default = "eesdevops"
 }
 
 variable "db_password" {
   description = "Senha do RDS MySQL"
   type        = string
+  default = "eesdevops"
 }

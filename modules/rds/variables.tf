@@ -3,18 +3,16 @@ variable "db_name" {
   type        = string
   default     = "wordpress"
 }
-
 variable "db_username" {
-  description = "Usuario"
+  description = "Nome de usuário do banco de dados"
   type        = string
-  default     = "eesdevop"
 }
 
 variable "db_password" {
-  description = "Senha"
+  description = "Senha do banco de dados"
   type        = string
-  default     = "eesdevops"
 }
+
 
 variable "db_instance_class" {
   description = "Classe da instância do banco de dados"
