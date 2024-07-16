@@ -1,4 +1,18 @@
-resource "aws_instance" "ubuntu_instance" {
+terraform {
+  required_version = ">= 1.9.1"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.57.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = var.region
+}
+
+resource "aws_instance" "wordpress_instance" {
   ami                         = var.ami_id
   instance_type               = var.instance_type
   vpc_security_group_ids      = [var.wordpress_sg_id, var.mysql_sg_id]
@@ -13,6 +27,4 @@ resource "aws_instance" "ubuntu_instance" {
     DB_USERNAME = var.db_username
     DB_PASSWORD = var.db_password
   })
-
-  depends_on = [var.db_host]
 }

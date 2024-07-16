@@ -32,13 +32,18 @@ module "rds" {
 
 module "ec2" {
   source          = "./modules/ec2"
-  region          = "us-east-1"
   ami_id          = "ami-04a81a99f5ec58529"
-  instance_type   = "t2.micro"
-  instance_name   = "ubuntu-24.04"
   mysql_sg_id     = module.security_groups.mysql_sg_id
   wordpress_sg_id = module.security_groups.wordpress_sg_id
   db_host         = module.rds.db_host
   db_username     = module.rds.db_username
   db_password     = module.rds.db_password
+}
+
+module "elb" {
+  source                = "./modules/elb"
+  subnet_ids            = var.subnet_ids
+  elb_security_group_id = module.security_groups.wordpress_lb_sg_id
+  vpc_id                = var.vpc_id
+  wordpress_instance_id = module.ec2.wordpress_instance_id
 }
