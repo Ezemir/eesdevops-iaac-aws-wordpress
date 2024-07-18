@@ -78,24 +78,24 @@ sudo sed -i "s/localhost/${DB_HOST}/" /var/www/html/wordpress/wp-config.php
 
 sudo chmod 640 /var/www/html/wordpress/wp-config.php
 
-echo "Configuração concluída com sucesso!"
+THEMES_DIR="/var/www/html/wordpress/wp-content/themes/*"
 
-THEME_DIR=$(sudo find /var/www/html/wordpress/wp-content/themes -maxdepth 1 -type d | grep -v '/\.' | head -n 1)
-FUNCTIONS_PHP="$THEME_DIR/functions.php"
-
-sudo bash -c "cat << 'EOF' >> $FUNCTIONS_PHP
-
+for theme_dir in $THEMES_DIR; do
+    if [ -d "$theme_dir" ]; then
+        functions_file="$theme_dir/functions.php"
+        if [ -f "$functions_file" ]; then
+            sudo tee -a "$functions_file" >/dev/null <<'PHP'
 function get_instance_ip() {
-    $ip_address = \$_SERVER['SERVER_ADDR'];
-    $current_datetime = date('d-m-Y H:i:s');
-    
-    $output = '<p>IP da Instância: ' . $ip_address . '</p>';
-    $output .= '<p>' . $current_datetime . '</p>';
-    
-    return $output;
+    $ip = $_SERVER['SERVER_ADDR'];
+    $datetime = date('d-m-Y H:i:s');
+    return "IP: $ip, $datetime";
 }
-
 add_shortcode('meuIP', 'get_instance_ip');
-EOF"
+PHP
+        fi
+    fi
+done
+
+echo "Configuração concluída com sucesso!"
 
 sudo systemctl restart php8.3-fpm
