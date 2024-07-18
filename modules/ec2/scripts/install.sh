@@ -86,13 +86,13 @@ FUNCTIONS_PHP="$THEME_DIR/functions.php"
 sudo bash -c "cat << 'EOF' >> $FUNCTIONS_PHP
 
 function get_instance_ip() {
-    \$ip_address = \$_SERVER['SERVER_ADDR'];
-    \$current_datetime = date('Y-m-d H:i:s');
+    $ip_address = \$_SERVER['SERVER_ADDR'];
+    $current_datetime = date('d-m-Y H:i:s');
     
-    \$output = '<p>IP da Instância: ' . \$ip_address . '</p>';
-    \$output .= '<p>' . \$current_datetime . '</p>';
+    $output = '<p>IP da Instância: ' . $ip_address . '</p>';
+    $output .= '<p>' . $current_datetime . '</p>';
     
-    return \$output;
+    return $output;
 }
 
 add_shortcode('meuIP', 'get_instance_ip');

@@ -1,23 +1,35 @@
 variable "region" {
-  type        = string
-  default     = "us-east-1"
+  type = string
 }
 variable "vpc_id" {
-  type        = string
-  default = "vpc-0f1cc9c32a9e43919"
+  type = string
 }
 variable "db_username" {
-  type        = string
-  default = "eesdevops"
+  type = string
 }
 variable "db_password" {
-  type        = string
-  default = "eesdevops"
+  type = string
+}
+variable "db_name" {
+  type = string
 }
 variable "subnet_ids" {
-  type        = list(string)
+  type = list(string)
 }
-variable "elb_security_group_id" {
-  type        = string
+variable "alb_security_group_id" {
+  type = string
 }
 
+variable "ami_id" {
+  type = string
+}
+variable "db_instance_class" {
+  type = string
+}
+
+variable "instance_name" {
+  type = string
+}
+variable "instance_type" {
+  type = string
+}

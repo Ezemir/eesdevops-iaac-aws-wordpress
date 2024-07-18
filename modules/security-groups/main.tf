@@ -1,17 +1,3 @@
-terraform {
-  required_version = ">= 1.9.1"
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.57.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = var.region
-}
-
 resource "aws_security_group" "mysql_sg" {
   name        = "mysql-sg"
 
